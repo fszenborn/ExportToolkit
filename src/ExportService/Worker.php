@@ -16,6 +16,7 @@
 namespace Elements\Bundle\ExportToolkitBundle\ExportService;
 
 use Elements\Bundle\ExportToolkitBundle\Configuration;
+use Elements\Bundle\ExportToolkitBundle\ExportService\AttributeClusterInterpreter\AbstractApiGatewayAttributeClusterInterpreter;
 use Elements\Bundle\ExportToolkitBundle\ExportService\AttributeClusterInterpreter\AbstractAttributeClusterInterpreter;
 use Elements\Bundle\ExportToolkitBundle\ExportService\Filter\DefaultFilter;
 use Elements\Bundle\ExportToolkitBundle\Traits\ApiGatewayClientTrait;
@@ -103,7 +104,9 @@ class Worker
         // update logger in interpreters
         foreach ($this->clusterInterpreters as $clusterInterpreter) {
             $clusterInterpreter->setLogger($logger);
-            $clusterInterpreter->setClient($logger);
+            if ($clusterInterpreter instanceof AbstractApiGatewayAttributeClusterInterpreter) {
+                $clusterInterpreter->setClient($logger);
+            }
         }
     }
 
