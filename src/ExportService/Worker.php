@@ -103,6 +103,7 @@ class Worker
         // update logger in interpreters
         foreach ($this->clusterInterpreters as $clusterInterpreter) {
             $clusterInterpreter->setLogger($logger);
+            $clusterInterpreter->setClient($logger);
         }
     }
 

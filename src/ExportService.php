@@ -16,6 +16,7 @@
 namespace Elements\Bundle\ExportToolkitBundle;
 
 use Elements\Bundle\ExportToolkitBundle\ExportService\Worker;
+use Elements\Bundle\ExportToolkitBundle\Traits\ApiGatewayClientTrait;
 use Elements\Bundle\ProcessManagerBundle\ExecutionTrait;
 use Pimcore\Logger;
 use Pimcore\Model\DataObject\AbstractObject;
@@ -28,6 +29,7 @@ class ExportService implements LoggerAwareInterface
 {
     use ExecutionTrait;
     use LoggerAwareTrait;
+    use ApiGatewayClientTrait;
 
     /**
      * @var Worker[]
@@ -117,6 +119,7 @@ class ExportService implements LoggerAwareInterface
         $monitoringItem->getLogger()->info('export-toolkit-' . $workerName);
 
         $worker->setLogger($monitoringItem->getLogger());
+        $worker->setClient($this->getClient());
 
         $this->logger->info('export-toolkit-' . $workerName);
 
