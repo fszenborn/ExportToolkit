@@ -18,6 +18,7 @@ namespace Elements\Bundle\ExportToolkitBundle\ExportService;
 use Elements\Bundle\ExportToolkitBundle\Configuration;
 use Elements\Bundle\ExportToolkitBundle\ExportService\AttributeClusterInterpreter\AbstractAttributeClusterInterpreter;
 use Elements\Bundle\ExportToolkitBundle\ExportService\Filter\DefaultFilter;
+use Elements\Bundle\ExportToolkitBundle\Traits\ApiGatewayClientTrait;
 use Elements\Bundle\ExportToolkitBundle\Traits\LoggerAwareTrait;
 use Pimcore\Log\ApplicationLogger;
 use Pimcore\Logger;
@@ -31,6 +32,7 @@ use Psr\Log\NullLogger;
 class Worker
 {
     use LoggerAwareTrait;
+    use ApiGatewayClientTrait;
 
     /**
      * @var Configuration
